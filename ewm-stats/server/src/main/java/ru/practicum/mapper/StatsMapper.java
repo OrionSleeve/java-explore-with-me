@@ -1,6 +1,6 @@
-package main.java.ru.practicum.mapper;
+package ru.practicum.mapper;
 
-import main.java.ru.practicum.model.ViewStats;
+import ru.practicum.model.ViewStats;
 import org.springframework.stereotype.Component;
 import ru.practicum.ewm.dto.ViewStatsDto;
 

@@ -1,6 +1,6 @@
-package main.java.ru.practicum.mapper;
+package ru.practicum.mapper;
 
-import main.java.ru.practicum.model.EndpointHit;
+import ru.practicum.model.EndpointHit;
 import org.mapstruct.Mapper;
 import ru.practicum.ewm.dto.EndpointHitDto;
 

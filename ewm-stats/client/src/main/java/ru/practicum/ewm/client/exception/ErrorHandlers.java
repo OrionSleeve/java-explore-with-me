@@ -1,4 +1,4 @@
-package java.ru.practicum.ewm.exception;
+package ru.practicum.ewm.client.exception;
 
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.web.client.ResponseErrorHandler;

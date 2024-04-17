@@ -1,4 +1,4 @@
-package main.java.ru.practicum.service;
+package ru.practicum.service;
 
 import ru.practicum.ewm.dto.EndpointHitDto;
 import ru.practicum.ewm.dto.ViewStatsDto;

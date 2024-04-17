@@ -1,4 +1,4 @@
-package main.java.ru.practicum.model;
+package ru.practicum.model;
 
 import lombok.*;
 
@@ -25,5 +25,5 @@ public class EndpointHit {
     @Column(name = "ip", nullable = false)
     private String ip;
     @Column(name = "time", nullable = false)
-    private LocalDateTime timestamp;
+    private LocalDateTime dateTime;
 }

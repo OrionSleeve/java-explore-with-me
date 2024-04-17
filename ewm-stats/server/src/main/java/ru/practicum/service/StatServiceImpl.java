@@ -1,12 +1,12 @@
-package main.java.ru.practicum.service;
+package ru.practicum.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import main.java.ru.practicum.mapper.HitMapper;
-import main.java.ru.practicum.mapper.StatsMapper;
-import main.java.ru.practicum.model.EndpointHit;
-import main.java.ru.practicum.model.ViewStats;
-import main.java.ru.practicum.repository.StatsRepository;
+import ru.practicum.mapper.HitMapper;
+import ru.practicum.mapper.StatsMapper;
+import ru.practicum.model.EndpointHit;
+import ru.practicum.model.ViewStats;
+import ru.practicum.repository.StatsRepository;
 import org.springframework.stereotype.Service;
 import ru.practicum.ewm.dto.EndpointHitDto;
 import ru.practicum.ewm.dto.ViewStatsDto;

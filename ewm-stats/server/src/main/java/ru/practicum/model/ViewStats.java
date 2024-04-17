@@ -1,4 +1,4 @@
-package main.java.ru.practicum.model;
+package ru.practicum.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

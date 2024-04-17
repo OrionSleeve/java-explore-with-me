@@ -1,4 +1,4 @@
-package java.ru.practicum.ewm.client;
+package ru.practicum.ewm.client;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -14,7 +14,7 @@ import ru.practicum.ewm.dto.EndpointHitDto;
 import ru.practicum.ewm.dto.ViewStatsDto;
 
 import java.nio.charset.StandardCharsets;
-import java.ru.practicum.ewm.exception.ErrorHandlers;
+import ru.practicum.ewm.client.exception.ErrorHandlers;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -28,8 +28,7 @@ public class StatsClient {
 
     public StatsClient(RestTemplateBuilder builder) {
         String statsServerUrl = "http://stats-server:9090";
-        restTemplate =
-                builder
+        restTemplate = builder
                         .uriTemplateHandler(new DefaultUriBuilderFactory(statsServerUrl))
                         .errorHandler(new ErrorHandlers())
                         .build();
