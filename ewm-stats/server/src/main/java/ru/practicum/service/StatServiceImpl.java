@@ -12,7 +12,6 @@ import ru.practicum.ewm.dto.EndpointHitDto;
 import ru.practicum.ewm.dto.ViewStatsDto;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,7 +31,7 @@ public class StatServiceImpl implements StatService {
 
     @Override
     public List<ViewStatsDto> getStatistics(LocalDateTime start, LocalDateTime end, String[] uris, boolean unique) {
-        List<ViewStats> viewViewStatsEntities = new ArrayList<>();
+        List<ViewStats> viewViewStatsEntities;
 
         if (unique && uris.length == 0) {
             viewViewStatsEntities = repository.getStatsForAllEndpointHitsWithUniqueIp(start, end);
