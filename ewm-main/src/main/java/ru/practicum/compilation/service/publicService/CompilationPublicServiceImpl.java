@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class CompilationPublicServiceImpl implements CompilationPublicService{
+public class CompilationPublicServiceImpl implements CompilationPublicService {
     private final CompilationRepository compilationRepository;
     private final EventFieldSet eventFieldSet;
     private final CompilationMapper compilationMapper;
