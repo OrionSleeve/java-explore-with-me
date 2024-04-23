@@ -18,7 +18,6 @@ public class AdminCategoryServiceImpl implements AdminCategoryService {
     private final CategoryMapper categoryMapper;
 
     @Override
-    @Transactional
     public CategoryDto create(CategoryDto categoryDto) {
         CategoryEntity createdCategory = categoryRepo.save(categoryMapper.toEntity(categoryDto));
         return categoryMapper.toDto(createdCategory);
@@ -33,6 +32,10 @@ public class AdminCategoryServiceImpl implements AdminCategoryService {
 
     @Override
     public CategoryDto update(Integer id, CategoryDto categoryDto) {
-        return null;
+        categoryRepo.findById(id).orElseThrow(() -> new NotFoundException(
+                String.format("Category with id=%d was not found", id)));
+        categoryDto.setId(id);
+        CategoryEntity updatedCategory = categoryRepo.save(categoryMapper.toEntity(categoryDto));
+        return categoryMapper.toDto(updatedCategory);
     }
 }

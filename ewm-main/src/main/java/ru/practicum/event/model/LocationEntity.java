@@ -1,9 +1,8 @@
-package ru.practicum.categories.model;
+package ru.practicum.event.model;
 
 import lombok.*;
 
 import javax.persistence.*;
-
 
 @Getter
 @Setter
@@ -12,12 +11,14 @@ import javax.persistence.*;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "categories")
-public class CategoryEntity {
+@Table(name = "locations")
+public class LocationEntity {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "name", nullable = false)
-    private String name;
+    @Column(name = "lat", nullable = false)
+    private float lat;
+    @Column(name = "lon", nullable = false)
+    private float lon;
 }

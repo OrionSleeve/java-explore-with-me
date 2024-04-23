@@ -1,10 +1,7 @@
 package ru.practicum.ewm.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import ru.practicum.ewm.Constants;
 
 import javax.validation.constraints.NotBlank;
@@ -14,6 +11,7 @@ import java.time.LocalDateTime;
 
 @ToString
 @Getter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class EndpointHitDto {

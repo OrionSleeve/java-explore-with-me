@@ -5,11 +5,11 @@ import lombok.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+@Setter
 @Getter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Setter
-@ToString
 public class CategoryDto {
     private Integer id;
     @NotBlank
