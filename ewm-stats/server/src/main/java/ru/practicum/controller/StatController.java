@@ -3,16 +3,12 @@ package ru.practicum.controller;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import ru.practicum.service.StatService;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.ewm.dto.EndpointHitDto;
 import ru.practicum.ewm.dto.ViewStatsDto;
 
-import static ru.practicum.ewm.Constants.DATE_FORMAT;
-
 import javax.validation.Valid;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Slf4j
@@ -29,10 +25,8 @@ public class StatController {
     }
 
     @GetMapping("/stats")
-    public List<ViewStatsDto> getStatistics(@RequestParam @DateTimeFormat(pattern = DATE_FORMAT)
-                                            LocalDateTime start,
-                                            @RequestParam @DateTimeFormat(pattern = DATE_FORMAT)
-                                            LocalDateTime end,
+    public List<ViewStatsDto> getStatistics(@RequestParam String start,
+                                            @RequestParam String end,
                                             @RequestParam(defaultValue = "") String[] uris,
                                             @RequestParam(defaultValue = "false") Boolean unique) {
         log.info("Getting statistics with request parameters: start {}, end {}, uris {}, unique {}",
