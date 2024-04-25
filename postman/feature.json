@@ -233,7 +233,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"annotation\": \"Сплав на байдарках похож на полет.\",\r\n  \"category\": {{catId}},\r\n  \"description\": \"Сплав на байдарках похож на полет. На спокойной воде — это парение. На бурной, порожистой — выполнение фигур высшего пилотажа. И то, и другое дарят чувство обновления, феерические эмоции, яркие впечатления.\",\r\n  \"eventDate\": \"2023-05-03 19:00:00\",\r\n  \"location\": {\r\n    \"lat\": 55.754167,\r\n    \"lon\": 37.62\r\n  },\r\n  \"paid\": true,\r\n  \"participantLimit\": 10,\r\n  \"requestModeration\": false,\r\n  \"title\": \"Сплав на байдарках\"\r\n}",
+          "raw": "{\r\n  \"annotation\": \"Сплав на байдарках похож на полет.\",\r\n  \"category\": {{catId}},\r\n  \"description\": \"Сплав на байдарках похож на полет. На спокойной воде — это парение. На бурной, порожистой — выполнение фигур высшего пилотажа. И то, и другое дарят чувство обновления, феерические эмоции, яркие впечатления.\",\r\n  \"eventDate\": \"2023-05-03 19:00:00\",\r\n  \"location\": {\r\n    \"lat\": 55.01,\n    \"lon\": 82.55\n  },\r\n  \"paid\": true,\r\n  \"participantLimit\": 10,\r\n  \"requestModeration\": false,\r\n  \"title\": \"Сплав на байдарках\"\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -279,7 +279,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"annotation\": \"Интересный балет Лебединое озеро\",\r\n  \"category\": {{catId}},\r\n  \"description\": \"Интереснейший балет Лебединое озеро с профессиональными актерами и живой музыкой подарит вам незабываемые впечатления.\",\r\n  \"eventDate\": \"2024-05-01 19:00:00\",\r\n  \"location\": {\r\n    \"lat\": 55.754167,\r\n    \"lon\": 37.62\r\n  },\r\n  \"paid\": true,\r\n  \"participantLimit\": 5,\r\n  \"requestModeration\": false,\r\n  \"title\": \"Балет Лебединое озеро\"\r\n}",
+          "raw": "{\r\n  \"annotation\": \"Интересный балет Лебединое озеро\",\r\n  \"category\": {{catId}},\r\n  \"description\": \"Интереснейший балет Лебединое озеро с профессиональными актерами и живой музыкой подарит вам незабываемые впечатления.\",\r\n  \"eventDate\": \"2024-05-01 19:00:00\",\r\n  \"location\": {\r\n    \"lat\": 55.01,\r\n    \"lon\": 82.55\r\n  },\r\n  \"paid\": true,\r\n  \"participantLimit\": 5,\r\n  \"requestModeration\": false,\r\n  \"title\": \"Балет Лебединое озеро\"\r\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -325,7 +325,7 @@
         "header": [],
         "body": {
           "mode": "raw",
-          "raw": "{\r\n  \"annotation\": \"Заряжающий адреналином страйкбол в лесу\",\r\n  \"category\": {{catId}},\r\n  \"description\": \"Страйкбол в лесу - это зажигательная игра на свежем воздухе с высокой физической активностью\",\r\n  \"eventDate\": \"2024-06-01 12:00:00\",\r\n  \"location\": {\r\n    \"lat\": 55.754167,\r\n    \"lon\": 37.62\r\n  },\r\n  \"paid\": true,\r\n  \"participantLimit\": 15,\r\n  \"requestModeration\": false,\r\n  \"title\": \"Страйкбол в лесу\"\r\n}",
+          "raw": "{\r\n  \"annotation\": \"Заряжающий адреналином страйкбол в лесу\",\r\n  \"category\": {{catId}},\r\n  \"description\": \"Страйкбол в лесу - это зажигательная игра на свежем воздухе с высокой физической активностью\",\r\n  \"eventDate\": \"2024-06-01 12:00:00\",\r\n  \"location\": {\r\n    \"lat\": 55.01,\n    \"lon\": 82.55\n  },\r\n  \"paid\": true,\r\n  \"participantLimit\": 15,\r\n  \"requestModeration\": false,\r\n  \"title\": \"Страйкбол в лесу\"\r\n}",
           "options": {
             "raw": {
               "language": "json"
