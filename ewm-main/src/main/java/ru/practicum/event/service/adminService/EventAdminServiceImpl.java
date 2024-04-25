@@ -148,8 +148,7 @@ public class EventAdminServiceImpl implements EventAdminService {
         eventFieldSet.setConfirmedRequests(eventEntities);
         eventFieldSet.setViews(eventEntities);
 
-        List<EventFullDto> foundEvents = eventEntities.stream().map(eventMapper::toDto).collect(Collectors.toList());
-        return foundEvents;
+        return eventEntities.stream().map(eventMapper::toDto).collect(Collectors.toList());
     }
 }
 
