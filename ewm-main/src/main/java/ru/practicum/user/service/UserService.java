@@ -8,7 +8,7 @@ import java.util.List;
 public interface UserService {
     UserDto createUser(UserDto userDto);
 
-    List<UserDto> getAllUsers(List<Integer> ids, Pageable pageForUsers);
+    List<UserDto> getAllUsers(Integer[] ids, Integer from, Integer size);
 
     void removeUser(Integer userId);
 }

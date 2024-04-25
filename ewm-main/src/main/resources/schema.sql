@@ -72,4 +72,14 @@ create TABLE IF NOT EXISTS compilation_events (
     REFERENCES compilations(id),
     CONSTRAINT fk_event_id FOREIGN KEY(event_id)
     REFERENCES events(id)
-)
+);
+
+create TABLE IF NOT EXISTS subscriptions (
+    user_id INTEGER NOT NULL,
+    subscribed_on INTEGER NOT NULL,
+    CONSTRAINT pk_subscriptions PRIMARY KEY (user_id, subscribed_on),
+    CONSTRAINT fk_user_id FOREIGN KEY(user_id)
+    REFERENCES users(id),
+    CONSTRAINT fk_subscribed_on FOREIGN KEY(subscribed_on)
+    REFERENCES users(id)
+);

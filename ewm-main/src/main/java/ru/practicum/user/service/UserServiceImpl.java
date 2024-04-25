@@ -6,11 +6,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.exception.NotFoundException;
 import ru.practicum.user.dto.UserDto;
+import ru.practicum.user.dto.UserShortDto;
 import ru.practicum.user.mapper.UserMapper;
+import ru.practicum.user.mapper.UserShortMapper;
 import ru.practicum.user.model.UserEntity;
 import ru.practicum.user.repository.UserRepository;
+import ru.practicum.util.Page;
 
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -19,25 +22,47 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+    private final UserShortMapper userShortMapper
 
 
     @Override
     public UserDto createUser(UserDto userDto) {
-        UserEntity savedUser = userRepository.save(userMapper.toEntity(userDto));
-        return userMapper.toDto(savedUser);
+        UserEntity userEntity = userMapper.toEntity(userDto);
+        userEntity.setSubscriptionAvailable(Objects.requireNonNullElse(userEntity.getSubscriptionAvailable(),
+                true));
+        UserEntity savedUser = userRepository.save(userEntity);
+        UserDto createdUserDto = userMapper.toDto(savedUser);
+        createdUserDto.setSubscribedOn(new ArrayList<>());
+        return createdUserDto;
     }
 
     @Override
-    public List<UserDto> getAllUsers(List<Integer> ids, Pageable pageForUsers) {
-        List<UserEntity> byIds;
-
-        if (ids != null && !ids.isEmpty()) {
-            byIds = userRepository.findByIdIn(ids, pageForUsers);
+    public List<UserDto> getAllUsers(Integer[] ids, Integer from, Integer size) {
+        Pageable pageable = Page.getPageForUsers(from, size);
+        List<UserEntity> userEntities;
+        if (ids == null || ids.length == 0) {
+            userEntities = userRepository.findAll(pageable).toList();
         } else {
-            byIds = userRepository.findAll(pageForUsers).toList();
+            userEntities = userRepository.findByIdIn(List.of(ids), pageable);
         }
 
-        return byIds.stream().map(userMapper::toDto).collect(Collectors.toList());
+        Set<Integer> subscribedOn = new HashSet<>();
+        userEntities.forEach(userEntity -> subscribedOn.addAll(userEntity.getSubscribedOn()));
+
+        List<UserEntity> subscribedOnUserEntities = userRepository.findByIdIn(subscribedOn);
+        List<UserDto> result = new ArrayList<>();
+
+        for (UserEntity userEntity : userEntities) {
+            List<UserShortDto> subscriptions = subscribedOnUserEntities.stream()
+                    .filter(userEntity1 -> userEntity.getSubscribedOn().contains(userEntity1.getId()))
+                    .map(userShortMapper::toDto)
+                    .sorted(Comparator.comparing(UserShortDto::getId)).collect(Collectors.toList());
+
+            UserDto userDto = userMapper.toDto(userEntity);
+            userDto.setSubscribedOn(subscriptions);
+            result.add(userDto);
+        }
+        return result;
     }
 
     @Override

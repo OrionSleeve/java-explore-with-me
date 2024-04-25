@@ -71,7 +71,6 @@ public class EventPrivateController {
         log.info("Updating event with id {} by user with id {}, {}", eventId, userId, updateEventDto);
         EventFullDto updatedEvent = service.updateEvent(userId, eventId, updateEventDto);
         log.info("Event with id {} has been updated: {}", eventId, updatedEvent);
-
         return updatedEvent;
     }
 
@@ -83,7 +82,17 @@ public class EventPrivateController {
         log.info("Updating request statuses for event with id {}, {}", eventId, updateRequestDto);
         RequestStatusUpdateResultDto updateResult = service.updateRequestStatus(userId, eventId, updateRequestDto);
         log.info("Requests have been updated: {}", updateResult);
-
         return updateResult;
+    }
+
+    @GetMapping("/subscriptions")
+    @ResponseStatus(HttpStatus.OK)
+    public List<EventShortDto> getEventsBySubscription(@PathVariable @NotNull @Min(1) Integer userId,
+                                                       @RequestParam(defaultValue = "0") @Min(0) Integer from,
+                                                       @RequestParam(defaultValue = "10") @Min(1) Integer size) {
+        log.info("Getting events by subscription for user with id {}, from {}, size {}", userId, from, size);
+        List<EventShortDto> events = service.getEventsBySubscription(userId, from, size);
+        log.info("Received list of events by subscription: {}", events);
+        return events;
     }
 }
