@@ -34,10 +34,10 @@ public class UserController {
     }
 
     @GetMapping
-    public List<UserDto> getUsers(@RequestParam(required = false) List<Integer> ids,
+    public List<UserDto> getUsers(@RequestParam(required = false) Integer[] ids,
                                   @RequestParam(defaultValue = "0") @Min(0) Integer from,
                                   @RequestParam(defaultValue = "10") @Min(1) Integer size) {
         Pageable pageForUsers = Page.getPageForUsers(from, size);
-        return userService.getAllUsers(ids, pageForUsers);
+        return userService.getAllUsers(ids, from, size);
     }
 }

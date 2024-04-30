@@ -145,4 +145,16 @@ public class ErrorHandler {
         log.error("Internal server error occurred:{}", errorResponse);
         return errorResponse;
     }
+
+    @ExceptionHandler(SubscriptionException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public ErrorResponse handleIllegalSubscriptionOperationException(SubscriptionException e) {
+        ErrorResponse errorResponse = ErrorResponse.builder().status(HttpStatus.CONFLICT.toString())
+                .reason("Trying to perform illegal operation on subscriptions")
+                .message(e.getMessage())
+                .timestamp(formatter.format(LocalDateTime.now()))
+                .build();
+        log.error("Illegal operation with subscriptions:{}", errorResponse);
+        return errorResponse;
+    }
 }

@@ -102,9 +102,7 @@ public class EventPrivateServiceImpl implements EventPrivateService {
         eventFieldSet.setConfirmedRequests(eventEntity);
         eventFieldSet.setViews(eventEntity);
 
-        EventFullDto eventDto = eventMapper.toDto(eventEntity);
-
-        return eventDto;
+        return eventMapper.toDto(eventEntity);
     }
 
     @Override
@@ -120,9 +118,7 @@ public class EventPrivateServiceImpl implements EventPrivateService {
         eventFieldSet.setConfirmedRequests(eventEntities);
         eventFieldSet.setViews(eventEntities);
 
-        List<EventShortDto> events = eventEntities.stream().map(shortEventMapper::toDto).collect(Collectors.toList());
-
-        return events;
+        return eventEntities.stream().map(shortEventMapper::toDto).collect(Collectors.toList());
     }
 
     @Override
@@ -140,9 +136,8 @@ public class EventPrivateServiceImpl implements EventPrivateService {
         }
 
         List<RequestEntity> requestEntities = requestRepository.findByEvent(eventId);
-        List<RequestDto> requestDtos = requestEntities.stream().map(requestMapper::toDto).collect(Collectors.toList());
 
-        return requestDtos;
+        return requestEntities.stream().map(requestMapper::toDto).collect(Collectors.toList());
     }
 
     @Override
@@ -209,9 +204,7 @@ public class EventPrivateServiceImpl implements EventPrivateService {
         eventFieldSet.setViews(eventEntity);
         eventFieldSet.setConfirmedRequests(eventEntity);
 
-        EventFullDto eventFullDto = eventMapper.toDto(eventEntity);
-
-        return eventFullDto;
+        return eventMapper.toDto(eventEntity);
     }
 
     @Override
@@ -283,14 +276,28 @@ public class EventPrivateServiceImpl implements EventPrivateService {
                 .collect(Collectors.toList());
 
         if (dto.getStatus() == RequestUpdateStatus.CONFIRMED) {
-            RequestStatusUpdateResultDto resultDto = RequestStatusUpdateResultDto.builder()
+            return RequestStatusUpdateResultDto.builder()
                     .confirmedRequests(updatedRequestsDto)
                     .rejectedRequests(rejectedRequestDto).build();
-            return resultDto;
         } else {
-            RequestStatusUpdateResultDto resultDto = RequestStatusUpdateResultDto.builder()
+            return RequestStatusUpdateResultDto.builder()
                     .rejectedRequests(updatedRequestsDto).build();
-            return resultDto;
         }
+    }
+
+    @Override
+    public List<EventShortDto> getEventsBySubscription(Integer userId, Integer from, Integer size) {
+        UserEntity user = userRepository.findById(userId)
+                .orElseThrow(() -> new NotFoundException(String.format("User with id=%d was not found", userId)));
+
+        Pageable pageable = Page.getPageForEvents(from, size);
+
+        List<EventEntity> eventEntities = eventRepository.findByInitiator_IdInAndStateAndEventDateAfter(
+                user.getSubscribedOn(), EventStatus.PUBLISHED, LocalDateTime.now(), pageable);
+
+        eventFieldSet.setConfirmedRequests(eventEntities);
+        eventFieldSet.setViews(eventEntities);
+
+        return eventEntities.stream().map(shortEventMapper::toDto).collect(Collectors.toList());
     }
 }
